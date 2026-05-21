@@ -1,0 +1,17 @@
+/**
+ * Al Rais Platform docs — custom theme.
+ * Primary color: #2351A3 (Al Rais blue).
+ * Generated via https://docusaurus.io/docs/styling-layout#styling-your-site-with-infima
+ */
+
+:root {
+  --ifm-color-primary: #2351A3;
+  --ifm-color-primary-dark: #1f4993;
+  --ifm-color-primary-darker: #1d458b;
+  --ifm-color-primary-darkest: #183872;
+  --ifm-color-primary-light: #2759b3;
+  --ifm-color-primary-lighter: #295dbb;
+  --ifm-color-primary-lightest: #336bd4;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}

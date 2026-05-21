@@ -1,0 +1,20 @@
+# Cloudflare Pages deployment configuration
+# https://developers.cloudflare.com/pages/configuration/wrangler-configuration/
+
+name = "alrais-docs"
+pages_build_output_dir = "build"
+
+# Build command used by Cloudflare Pages
+[build]
+command = "npm run build"
+
+# Custom domain: docs.alrais.com
+# Configure via Cloudflare dashboard → Pages → Custom domains
+
+# Environment variables for production
+[env.production]
+NODE_VERSION = "20"
+
+# Environment variables for preview (PR deploys)
+[env.preview]
+NODE_VERSION = "20"
