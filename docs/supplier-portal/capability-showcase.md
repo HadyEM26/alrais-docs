@@ -6,13 +6,13 @@ sidebar_position: 1
 
 # Al Rais Supplier Portal — Capability Showcase
 
-> A self-service intelligence platform for travel suppliers. 44 endpoints. 11 data tables. Real-time competitive positioning. Built for the GCC travel ecosystem.
+> A managed supplier marketplace for travel. Suppliers list tours, packages, and transfers. Admins review and approve. Approved products go live for customers. 44 endpoints. 11 data tables. Real-time competitive intelligence. Built for the GCC travel ecosystem.
 
 ---
 
 ## 01 — The Portal
 
-The Al Rais Supplier Portal is the operational interface between travel suppliers and the Al Rais marketplace. It provides suppliers with real-time visibility into their competitive position, revenue performance, and product lifecycle — all through a unified API surface secured by 3-tier RBAC.
+The Al Rais Supplier Portal is a **managed marketplace** where travel suppliers create, price, and publish their product offerings to the Al Rais consumer platform. Suppliers list tours, multi-module packages (flight + hotel + activity), and airport transfers. Every listing goes through an admin approval workflow before it reaches customers. Once live, suppliers get real-time visibility into competitive positioning, revenue, and booking conversion — all through a unified API surface secured by 3-tier RBAC.
 
 ### System Architecture
 
@@ -188,9 +188,40 @@ Supports `hourly`, `daily`, and `monthly` granularity with custom date ranges.
 
 ---
 
-## 04 — Product Catalog
+## 04 — Product Catalog & Supplier Marketplace
 
-The Product Catalog manages supplier offerings across three product types, with a full lifecycle from draft through admin approval to live listing.
+The portal operates as a **managed supplier marketplace**. Suppliers create product listings — tours, multi-module packages, and airport transfers — and submit them for admin review. Approved products go live on the Al Rais consumer platform, where they appear in search results, get scored by the curation engine, and become bookable by customers.
+
+### The Supplier Journey
+
+```mermaid
+graph LR
+    subgraph "Supplier"
+        A["Create Draft"] --> B["Add Images<br/>& Pricing"]
+        B --> C["Set Per-Date<br/>Availability"]
+        C --> D["Submit for<br/>Review"]
+    end
+
+    subgraph "Admin"
+        D --> E{"Admin<br/>Reviews"}
+        E -->|"Approve"| F["Product<br/>Goes Live"]
+        E -->|"Reject"| G["Back to Draft<br/>(with reason)"]
+        G --> B
+    end
+
+    subgraph "Consumer Platform"
+        F --> H["Appears in<br/>Search Results"]
+        H --> I["Curation Engine<br/>Scores & Ranks"]
+        I --> J["Customer<br/>Books"]
+    end
+```
+
+1. **Create** — Supplier builds a product draft: title, description, location, images, cancellation policy, inclusions/exclusions, and type-specific details
+2. **Price & Availability** — Per-date calendar with capacity limits, start times, and tiered pricing (adult/child/infant/group)
+3. **Submit** — Draft enters the admin approval queue
+4. **Admin Review** — Platform admin inspects content quality, pricing, policy clarity, and compliance. Approves or rejects with a written reason
+5. **Live** — Approved products appear in consumer search, get curation-scored against competitors, and become bookable
+6. **Iterate** — Rejected products return to draft. The supplier addresses feedback and resubmits. Pricing and availability updates on approved products take effect immediately without re-approval
 
 ### Product Types
 
@@ -213,6 +244,15 @@ stateDiagram-v2
     approved --> archived: Supplier archives
     suspended --> approved: Admin reinstates
 ```
+
+### What Happens After Approval
+
+Once a product reaches `approved`:
+- It enters the **consumer search index** for its destination/category
+- The **curation engine** scores it alongside competing products using price position, supplier reliability, and quality signals
+- Customers see it in **search results** with price, images, and cancellation policy
+- **Bookings** flow through the middleware and appear in the supplier's revenue analytics
+- The supplier can track per-product **performance** — impressions, wins, bookings, and revenue
 
 ### Endpoint Inventory (11 Endpoints)
 

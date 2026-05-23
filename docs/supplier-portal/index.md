@@ -6,7 +6,50 @@ sidebar_position: 1
 
 # Supplier Portal
 
-The Al Rais Supplier Portal is a self-service platform that gives travel suppliers (airlines, hotel bedsbanks, activity providers) visibility into their performance within the Al Rais marketplace. It exposes competitive intelligence, revenue analytics, product catalog management, and administrative workflows through a unified API surface.
+The Al Rais Supplier Portal is a self-service marketplace platform where travel suppliers (airlines, hotel bedbanks, activity providers, transfer operators) manage their product listings, pricing, and availability on the Al Rais consumer marketplace. Approved products become searchable and bookable by customers on the consumer-facing platform.
+
+Beyond catalog management, the portal gives suppliers real-time visibility into their competitive position, revenue performance, and booking conversion — and gives platform admins the tools to curate marketplace quality through approval workflows.
+
+## Marketplace Model
+
+The portal operates as a **managed marketplace**: suppliers create and submit product listings, but nothing goes live until a platform admin reviews and approves it. This applies to products, negotiated rates, and profile changes.
+
+```mermaid
+graph LR
+    subgraph "Supplier Side"
+        CREATE["Create Product<br/>(draft)"]
+        EDIT["Set Pricing<br/>& Availability"]
+        SUBMIT["Submit for<br/>Review"]
+    end
+
+    subgraph "Admin Side"
+        REVIEW["Admin Reviews<br/>Product"]
+        APPROVE["Approve"]
+        REJECT["Reject<br/>(with reason)"]
+    end
+
+    subgraph "Consumer Platform"
+        LIVE["Product Live<br/>in Search"]
+        BOOK["Customer<br/>Books"]
+    end
+
+    CREATE --> EDIT --> SUBMIT --> REVIEW
+    REVIEW --> APPROVE --> LIVE --> BOOK
+    REVIEW --> REJECT --> EDIT
+```
+
+**What suppliers can do:**
+- List tours, packages, and airport transfers with images, pricing tiers, and per-date availability
+- Set negotiated rates (corporate, promotional, seasonal discounts) for specific routes
+- Define blackout dates when they can't fulfill bookings
+- Monitor how their products perform: search impressions, curation wins, bookings, revenue
+- See anonymized competitive positioning vs. other suppliers on the same routes
+
+**What admins control:**
+- Approve or reject every product, rate, and profile change before it affects the marketplace
+- Moderate customer reviews
+- Access platform-wide analytics and downloadable reports
+- Manage supplier portal user accounts and roles
 
 ## At a Glance
 
