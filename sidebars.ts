@@ -67,6 +67,21 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      label: 'Supplier Portal',
+      link: {type: 'doc', id: 'supplier-portal/index'},
+      items: [
+        'supplier-portal/capability-showcase',
+        'supplier-portal/intelligence-api',
+        'supplier-portal/platform-analytics',
+        'supplier-portal/revenue-analytics',
+        'supplier-portal/product-catalog',
+        'supplier-portal/reviews',
+        'supplier-portal/notifications',
+        'supplier-portal/rate-management',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Industry Context',
       items: [
         'industry/supplier-models',
